@@ -1,59 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚴‍♂️ Ctrl Triathlon - Gestion des Contrôles Anti-Dopage
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Ctrl Triathlon** est une application web développée avec Laravel permettant la gestion complète et sécurisée des contrôles anti-dopage lors de compétitions de triathlon. 
+Le système met en relation deux acteurs principaux : les **Infirmiers** (qui réalisent les prélèvements) et les **Laboratoires** (qui analysent les échantillons et transmettent les résultats).
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛠️ Technologies Utilisées
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* **Backend :** PHP, Framework Laravel
+* **Authentification :** Laravel Breeze
+* **Base de données :** SQL Server (sqlsrv)
+* **Frontend :** Blade, Tailwind CSS (avec mode sombre natif)
+* **Outils :** Vite.js (pour la compilation des assets)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ✨ Fonctionnalités Principales
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+* 🔒 **Système d'authentification et Rôles :** Accès sécurisé et différencié selon le rôle de l'utilisateur (Infirmier ou Laboratoire).
+* 🏥 **Gestion des Laboratoires :** Ajout, modification et suppression des laboratoires partenaires.
+* 💊 **Gestion des Produits Dopants :** Définition des substances interdites et de leurs seuils de tolérance légaux.
+* 🩸 **Module de Prélèvements :** * Création manuelle d'un dossier d'analyse pour un athlète.
+  * Génération automatique et aléatoire (tirage au sort selon un pourcentage d'inscrits).
+* 🧪 **Portail Laboratoire (Échanges JSON) :** * Téléchargement des lots à analyser.
+  * Module de simulation : génération de résultats aléatoires (positifs ou négatifs) avec mise à jour en temps réel des alertes couleurs (Rouge/Vert) côté infirmier.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## ⚙️ Prérequis
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Avant de commencer, assurez-vous d'avoir installé sur votre machine :
+* [PHP](https://www.php.net/) (version 8.1 ou supérieure)
+* [Composer](https://getcomposer.org/)
+* [Node.js et npm](https://nodejs.org/) (pour Laravel Breeze et Tailwind CSS)
+* Un serveur **SQL Server** configuré et accessible.
+* L'extension PHP `pdo_sqlsrv` activée.
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🚀 Installation du projet
 
-## Contributing
+Copiez et collez le bloc suivant dans votre terminal pour installer l'ensemble du projet. 
+*(⚠️ Attention : L'exécution s'arrêtera après la copie du fichier `.env`. Vous devrez le configurer avec vos identifiants SQL Server avant de lancer les commandes de migration et de démarrage du serveur).*
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+# 1. Cloner le dépôt et entrer dans le dossier
+git clone [https://github.com/votre-nom/ctrl-triathlon.git](https://github.com/votre-nom/ctrl-triathlon.git)
+cd ctrl-triathlon
 
-## Code of Conduct
+# 2. Installer les dépendances PHP
+composer install
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 3. Installer et compiler les dépendances Front-end (Breeze / Tailwind)
+npm install
+npm run build
 
-## Security Vulnerabilities
+# 4. Créer le fichier d'environnement
+cp .env.example .env
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# 5. Générer la clé d'application
+php artisan key:generate
 
-## License
+#6 base de données
+** rentrer les infos de la base de donner
+DB_CONNECTION=sqlsrv
+DB_HOST=127.0.0.1
+DB_PORT=1433
+DB_DATABASE=nom_de_votre_base
+DB_USERNAME=votre_utilisateur
+DB_PASSWORD=votre_mot_de_passe
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# 6. Migrer et peupler la base de données (création des tables et des comptes de test)
+php artisan migrate:fresh --seed
+
+# 7. Lancer le serveur local
+php artisan serve
